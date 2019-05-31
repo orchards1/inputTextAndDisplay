@@ -10,11 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var phonetextField: UITextField!
+    @IBOutlet weak var fullnameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        fullnameTextField.delegate = self
+        phonetextField.delegate = self
     }
 
 
 }
 
+extension ViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == fullnameTextField
+        {
+            phonetextField.becomeFirstResponder()
+        }
+        else if textField == phonetextField
+        {
+            phonetextField.resignFirstResponder()
+        }
+        return true
+    }
+}
